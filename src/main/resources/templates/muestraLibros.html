@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
+crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+ integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" 
+ crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+
+			<form th:action="@{/addLibro}" class="row gy-2 gx-3 align-items-center my-5" method="post" modelAttribute="libro">
+								<legend class="text-center mb-4">Mantenedor de Libros</legend>
+				<table>
+					<tr>
+						<td>Nombre: </td>
+						<td><input type="text" id="idNombre" name="nombre"/></td>
+						<td>Autor: </td>
+						<td><input type="text" id="idApellidoPaterno" name="autor"/></td>
+					</tr>
+				</table>
+
+				<div class="col-auto mx-auto px-5 my-5">
+						<button type="submit" class="btn btn-primary">Agregar</button>
+				</div>
+
+			</form>
+	</div>
+
+	<div class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">ID libro</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Autor</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="var:${libros}">
+					<th th:text="${var.id}"></th>
+					<td th:text="${var.nombre}"></td>
+				    <td th:text="${var.autor}"></td>
+					<td><a th:href="@{/deleteLibro/?id={id}(id=${var.id})}">Eliminar</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
